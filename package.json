@@ -1,0 +1,16 @@
+{
+  "name": "react-new",
+  "version": "1.0.0",
+  "author": "Hadi Samadzad",
+  "license": "MIT",
+  "description": "Version 2 of the young boy",
+  "main": "index.js",
+  "dependencies": {
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.17.0"
+  },
+  "scripts": {
+    "babel-run": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  }
+}
