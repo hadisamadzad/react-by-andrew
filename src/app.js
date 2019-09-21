@@ -1,7 +1,13 @@
 
 let app = {
-title:'Going Again but ...',
-subtitle: 'This app is new edition of simple apps!'
+    title: 'Going Again but ...',
+    subtitle: 'This app is new edition of simple apps!'
+};
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const option = e.target.elements.option.value;
 };
 
 let template = (
@@ -13,29 +19,14 @@ let template = (
             <li>Item 2</li>
             <li>Item 3</li>
         </ol>
-    </div>    
-);
 
-let count = 0;
+        <form onSubmit={onFormSubmit}>
+            <input type="text" name="option" />
+            <button type="submit">Add Option</button>
+        </form>
 
-const addOne = () => {
-    count++;
-};
-const setZero = () => {
-
-};
-const minusOne = () => {
-
-};
-
-const counter = (
-    <div>
-    <h2>Count: {count}</h2>
-    <button id="btnAdd" onClick={addOne}>+1</button>
-    <button id="btnZero" className="button">0</button>
-    <button id="btnMinus" className="button">-1</button>
     </div>
 );
 
 let appRoot = document.getElementById('app');
-ReactDOM.render(counter, appRoot);
+ReactDOM.render(template, appRoot);

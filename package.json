@@ -8,7 +8,8 @@
   "dependencies": {
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
-    "express": "^4.17.0"
+    "express": "^4.17.0",
+    "live-server": "^1.2.1"
   },
   "scripts": {
     "babel-run": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
