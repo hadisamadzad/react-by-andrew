@@ -1,32 +1,60 @@
 
 let app = {
-    title: 'Going Again but ...',
-    subtitle: 'This app is new edition of simple apps!'
+    title: 'Indecision ...',
+    subtitle: 'This app is new edition of simple apps!',
+    options: []
 };
 
 const onFormSubmit = (e) => {
     e.preventDefault();
 
     const option = e.target.elements.option.value;
+    if(option){
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        render();
+    }
 };
 
-let template = (
-    <div>
-        <h1>{app.title}</h1>
-        <p>{app.subtitle}</p>
-        <ol>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-        </ol>
+const onMakeDecision = () => {
+    
+    const randomNum = Math.floor(Math.random() * app.options.length);
+    const option = app.options[randomNum];    
+    alert(option);
+    render();
+};
 
-        <form onSubmit={onFormSubmit}>
-            <input type="text" name="option" />
-            <button type="submit">Add Option</button>
-        </form>
+const onRemoveAll = () => {
+    app.options = [];    
+    render();  
+};
 
-    </div>
-);
 
-let appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+const appRoot = document.getElementById('app');
+const render = () => {
+    let template = (
+        <div>
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            <p>{app.options.length > 0 ? "Here are your options:" : "No Options"}</p>
+            <button disabled={app.options.length > 0 ? false : true} onClick={onMakeDecision}>Make Decision</button>
+            <button onClick={onRemoveAll}>Remove All</button>
+            <ol>
+            {
+                app.options.map((option) => {
+                    return <li key={option}>{option}</li>
+                })
+            }    
+            </ol>
+    
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option" />
+                <button type="submit">Add Option</button>
+            </form>
+    
+        </div>
+    );
+    ReactDOM.render(template, appRoot);
+};
+
+render();
