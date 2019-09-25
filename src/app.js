@@ -1,11 +1,14 @@
 class IndecisionApp extends React.Component {
 render() {
+    const title = "Indecision ...";
+    const subtitle = "Put your life in the hands of a computer!";
+    const options = ["Option One", "Option Two", "Option Three"];
     return (
         <div>
-        <Header />
-        <Action />
-        <Options />
-        <AddOption />
+            <Header title={title} subtitle={subtitle} />
+            <Action />
+            <Options options={options} />
+            <AddOption />
         </div>
     );
 }
@@ -15,32 +18,43 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-                <h1>Indecision ...</h1>
-                <h3>Put your life in the hands of a computer!</h3>
+                <h1>{this.props.title}</h1>
+                <h3>{this.props.subtitle}</h3>
             </div>
         );
     }
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert("Picked.");
+    }
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+    handleRemoveAll() {
+        console.log(this.props.options);
+        alert("Remove All Clicked.");
+    }
     render() {
         return (
             <div>
-                <p>Options component here</p>
-                <Option />
-                <Option />
-                <Option />
-                <Option />
+                <button onClick={this.handleRemoveAll}>Remove All</button>
+                {
+                    this.props.options.map(x =>
+                        <Option key={x} title={x} />)
+                }
             </div>
         );
     }
@@ -50,17 +64,28 @@ class Option extends React.Component {
     render() {
         return (
             <div>
-                <p>Option component here</p>
+                <p>{this.props.title}</p>
             </div>
         );
     }
 }
 
 class AddOption extends React.Component {
+    handleSubmit(e) {
+        e.preventDefault();
+        
+        const newOption = e.target.elements.newOption.value;
+        if(newOption){
+            alert(newOption);
+        }
+    }
     render() {
         return (
             <div>
-                <p>AddOption component here</p>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" name="newOption"/>
+                    <button type="submit">Add Option</button>
+                </form>
             </div>
         );
     }
