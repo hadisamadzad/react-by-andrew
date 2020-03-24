@@ -9,8 +9,6 @@ import getVisibleExpenses from './selectors/expenses'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
-
-
 const store = configureStore();
 
 store.dispatch(addExpense({ description: 'Water Bill', amount: 1200 }));
