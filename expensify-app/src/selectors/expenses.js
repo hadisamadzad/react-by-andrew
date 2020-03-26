@@ -8,7 +8,7 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
     }).sort((a, b) => {
         switch (sortBy) {
             case "date":
-                return a.date < b.date ? 1 : -1;
+                return a.createdAt < b.createdAt ? 1 : -1;
             case "amount":
                 return a.amount < b.amount ? 1 : -1;
         }
