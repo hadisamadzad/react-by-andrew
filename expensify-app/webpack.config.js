@@ -44,7 +44,7 @@ module.exports = (env) => {
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'public'),
-            historyApiFallback: true // This code is added to provide index.html for any route
+            historyApiFallback: true // Added to provide index.html for any not matched route
         },
     };
 }
